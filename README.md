@@ -1,6 +1,7 @@
-# TSSR-1025-P3-G7 Infrastructure Réseau Ekoloclast
-
-Infrastructure Réseau Ekoloclast
+## Prjoet TSSR-1025-P3-G7 Infrastructure Réseau Ekoloclast
+![logo](Ressources/logo_Ekolocast.png)
+---
+## Infrastructure Réseau Ekoloclast
 À propos
 Projet de mise en place d'une infrastructure réseau professionnelle complète pour Ekoloclast, une start-up de 183 employés spécialisée dans l'écologie.
 Objectif : Remplacer le réseau actuel basique (box FAI + wifi) par une infrastructure d'entreprise sécurisée et centralisée.
@@ -46,14 +47,14 @@ Messagerie (Zimbra ou iRedMail)
 VoIP (FreePBX)  
 
 Avancement  
-Semaine 1 : Phase de planification (en cours)  
+Tache 1 : Phase de planification (en cours)  
 
- Tableau d'inventaire matériel  
- Schéma réseau complet  
- Plan d'adressage IP  
- Nomenclature des noms  
+Tableau d'inventaire matériel  
+Schéma réseau complet  
+Plan d'adressage IP  
+Nomenclature des noms  
 
-Semaines suivantes : Installation et configuration  
+Tache suivantes : Installation et configuration  
 Technologies  
 
 Windows Server 2022  
