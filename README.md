@@ -49,9 +49,9 @@ Plan d'adressage IP complet:
 | VLAN / Zone | Réseau | IP | Équipement | Masque | Gateway | DNS | Utilisation / Remarques |
 |------------|--------|----|------------|--------|---------|-----|--------------------------|
 | VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.0 | - | /29 | - | - | Adresse réseau |
-| VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.1 | FW01 | /29 | - | - | Interface gestion FW01 |
-| VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.2 | FW02 | /29 | 10.10.5.1 | - | Interface WAN FW02 |
-| VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.3 | FW01 | /29 | - | - | Interconnexion FW01→FW02 |
+| VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.1 | FW01 | /29 | - | - | Interface gestion G1/1 |
+| VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.2 | FW02 | /29 | 10.10.5.1 | - | Interface FW0/0 |
+| VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.3 | FW01 | /29 | - | - | Interconnexion FW01 G1/2 |
 | VLAN 5 Gestion | 10.10.5.0/29 | 10.10.5.7 | - | /29 | - | - | Broadcast |
 | VLAN 10 Serveurs | 172.16.10.0/28 | 172.16.10.0 | - | /28 | - | - | Adresse réseau |
 | VLAN 10 Serveurs | 172.16.10.0/28 | 172.16.10.1 | SRVWIN01 | /28 | 172.16.10.14 | 127.0.0.1 | AD / DNS / DHCP |
@@ -67,8 +67,8 @@ Plan d'adressage IP complet:
 | VLAN 20 Clients | 172.16.20.0/28 | 172.16.20.15 | - | /28 | - | - | Broadcast |
 | VLAN 30 DMZ | 172.16.30.0/28 | 172.16.30.0 | - | /28 | - | - | Adresse réseau |
 | VLAN 30 DMZ | 172.16.30.0/28 | 172.16.30.1 | SRVLX01 | /28 | 172.16.30.14 | 172.16.10.1 | Messagerie iRedMail |
-| VLAN 30 DMZ | 172.16.30.0/28 | 172.16.30.14 | FW01 | /28 | - | - | Gateway DMZ |
+| VLAN 30 DMZ | 172.16.30.0/28 | 10.10.5.3 | FW01 | /28 | - | - | Gateway DMZ |
 | VLAN 30 DMZ | 172.16.30.0/28 | 172.16.30.15 | - | /28 | - | - | Broadcast |
-| FAI Internet | 192.168.1.0 | 192.168.1... | FW01 | /24 | 192.168.1.1 | 192.168.1.1 | Connexion Internet |
+| FAI Internet | 192.168.1.0 | 192.168.1.1| FW01 | /24 | 192.168.1.1 | 192.168.1.1 | Connexion Internet |
 
 Tache suivantes : Installation et configuration
