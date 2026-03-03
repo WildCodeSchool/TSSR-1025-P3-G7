@@ -71,7 +71,7 @@ docker logs glpi-mariadb
 ---
 
 ## Gestion du parc
-
+![GLPI/Ressources/capture_de_surface.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/784892a4b5bfd69c46500ffa121db3b4b8ded8a1/GLPI/Ressources/capture_de_surface.png)
 ### Ajouter un ordinateur
 
 1. Parc → Ordinateurs → Ajouter
