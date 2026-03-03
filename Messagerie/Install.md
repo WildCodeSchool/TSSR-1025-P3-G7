@@ -1,58 +1,74 @@
 # SRVLX01 - Installation
 
-## Serveur Messagerie iRedMail
+## Serveur Messagerie iRedMail (Debian 12)
 
 ---
 
 ## Informations
 
-| Paramètre | Valeur |
+| Parametre | Valeur |
 |-----------|--------|
 | Nom | SRVLX01 |
-| OS | Debian 12 (sans GUI) |
-| IP | 172.16.30.2/28 |
-| Passerelle | 172.16.30.1 (FW01 DMZ) |
+| Hostname FQDN | mail.tssr.lan |
+| OS | Debian 12 (Bookworm) - Sans GUI |
+| IP | 172.16.30.1/28 |
+| Passerelle | 172.16.30.14 (FW01 DMZ) |
 | DNS | 172.16.10.2 |
 | Zone | DMZ |
 | Domaine mail | tssr.lan |
 
 ---
 
-## Préparation VirtualBox
+## Preparation VirtualBox
 
 - Type : Linux
 - Version : Debian (64-bit)
-- RAM : 4096 MB
+- RAM : 4096 MB (minimum pour iRedMail)
 - Disque : 40 GB
-- Réseau : Internal Network → DMZ
+- Reseau : Internal Network - DMZ
 
 ---
 
 ## Installation Debian 12
 
-1. Installer Debian 12 netinst
-2. Nom machine : mail
-3. Domaine : tssr.lan
+### Telecharger ISO
+
+https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.9.0-amd64-netinst.iso
+
+### Installation
+
+1. Demarrer sur ISO - Selectionner Install (pas Graphical)
+2. Langue : Francais | Clavier : Francais
+3. Nom machine : mail | Domaine : tssr.lan
 4. Mot de passe root : Azerty1*
 5. Utilisateur : admin / Azerty1*
-6. Sélection logiciels : SSH + Utilitaires (pas de GUI)
+6. Partitionnement : Disque entier
+
+### Selection des logiciels (IMPORTANT)
+
+Decocher tout sauf :
+- [x] Serveur SSH
+- [x] Utilitaires usuels du systeme
+
+Installer GRUB - Redemarrer - Retirer ISO
 
 ---
 
-## Configuration réseau
+## Configuration reseau
 
 nano /etc/network/interfaces
-
 
 auto lo
 iface lo inet loopback
 
 auto enp0s3
 iface enp0s3 inet static
-    address 172.16.30.2
+    address 172.16.30.1
     netmask 255.255.255.240
-    gateway 172.16.30.1
+    gateway 172.16.30.14
     dns-nameservers 172.16.10.2
+    dns-search tssr.lan
+
 
 systemctl restart networking
 
@@ -60,77 +76,138 @@ systemctl restart networking
 
 ## Configuration hostname
 
+
 hostnamectl set-hostname mail.tssr.lan
 
 nano /etc/hosts
 
-127.0.0.1       localhost
-172.16.30.2     mail.tssr.lan mail
 
-Vérifier :
-hostname -f
-Doit afficher : mail.tssr.lan
+Contenu /etc/hosts :
+
+
+127.0.0.1       localhost
+172.16.30.1     mail.tssr.lan mail
+
+
+Verifier : hostname -f doit afficher mail.tssr.lan
+
+---
+
+## Preparation systeme
+
+
+apt update && apt upgrade -y
+apt install -y wget curl bzip2 gzip
+reboot
+
 
 ---
 
 ## Installation iRedMail
 
-apt update && apt upgrade -y
-
+su -
 cd /root
-wget https://github.com/iredmail/iRedMail/archive/refs/tags/1.7.4.tar.gz
-tar -xzf 1.7.4.tar.gz
-cd iRedMail-1.7.4
+wget https://github.com/iredmail/iRedMail/archive/refs/tags/1.7.1.tar.gz
+tar -xzf 1.7.1.tar.gz
+cd iRedMail-1.7.1
 bash iRedMail.sh
 
-### Configuration wizard
 
-| Paramètre | Valeur |
-|-----------|--------|
+### Assistant installation
+
+| Ecran | Choix |
+|-------|-------|
+| Welcome | y |
 | Mail storage | /var/vmail |
 | Web server | Nginx |
 | Backend | MariaDB |
-| Domain | tssr.lan |
+| MySQL root password | Azerty1* |
+| First mail domain | tssr.lan |
 | Admin password | Azerty1* |
-| Components | Roundcube, iRedAdmin, Fail2ban |
-| Firewall | Yes |
+| Components | Roundcubemail, iRedAdmin, Fail2ban |
+
+Apres installation : reboot
 
 ---
 
 ## Configuration DNS sur SRVWIN01
 
-Ajouter les enregistrements :
-
 | Type | Nom | Valeur |
 |------|-----|--------|
-| A | mail | 172.16.30.2 |
-| MX | @ | mail.tssr.lan (priorité 10) |
+| A | mail | 172.16.30.1 |
+| MX | @ | mail.tssr.lan (priorite 10) |
 
 ---
 
-## Règles FW01 pfSense
+## Regles FW01 pfSense
+
+### Interface DMZ
 
 | Source | Destination | Port | Description |
 |--------|-------------|------|-------------|
-| LAN | 172.16.30.2 | 80, 443 | Webmail |
-| LAN | 172.16.30.2 | 587, 993 | SMTP/IMAP |
+| DMZ net | any | 80, 443 | Web sortant |
+| DMZ net | any | 25, 587 | SMTP sortant |
+
+### Interface TRANSIT
+
+| Source | Destination | Port | Description |
+|--------|-------------|------|-------------|
+| NET_Internal | 172.16.30.1 | 80, 443 | Webmail |
+| NET_Internal | 172.16.30.1 | 587, 993 | SMTP/IMAP |
 
 ---
 
-## Vérification
+## Verification
 
 systemctl status postfix dovecot nginx mariadb
-ss -tlnp | grep -E "25|587|993|80|443"
+ss -tlnp | grep -E "25|587|993|443"
+
 
 ---
 
-## Accès
+## Acces
 
-| Service | URL |
-|---------|-----|
-| Webmail | https://172.16.30.2/mail |
-| iRedAdmin | https://172.16.30.2/iredadmin |
-| Admin | postmaster@tssr.lan / Azerty1* |
+| Service | URL | Identifiants |
+|---------|-----|--------------|
+| Webmail | https://172.16.30.1/mail/ | utilisateur@tssr.lan |
+| iRedAdmin | https://172.16.30.1/iredadmin/ | postmaster@tssr.lan / Azerty1* |
+
+---
+
+## Creer utilisateur mail
+
+### Via iRedAdmin
+
+1. https://172.16.30.1/iredadmin/
+2. Login : postmaster@tssr.lan
+3. Add - User - Email + Password - Add
+
+### Via CLI
+
+cd /root/iRedMail-1.7.1/tools/
+bash create_mail_user_SQL.sh utilisateur@tssr.lan motdepasse
+
+---
+
+## Configuration client mail
+
+| Parametre | Valeur |
+|-----------|--------|
+| Serveur IMAP | mail.tssr.lan |
+| Port IMAP | 993 (SSL/TLS) |
+| Serveur SMTP | mail.tssr.lan |
+| Port SMTP | 587 (STARTTLS) |
+
+---
+
+## Ports utilises
+
+| Port | Service |
+|------|---------|
+| 25 | SMTP |
+| 587 | Submission |
+| 993 | IMAPS |
+| 443 | HTTPS |
 
 ---
 
