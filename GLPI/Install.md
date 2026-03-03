@@ -157,13 +157,16 @@ docker compose up -d
 
 1. Accéder à http://172.16.10.3  
 2. Langue : Français  
-3. Installer  
-4. Base de données :    
+![GLPI/Ressources/gpli_setup.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/784892a4b5bfd69c46500ffa121db3b4b8ded8a1/GLPI/Ressources/gpli_setup.png)
+4. Installer 
+![GLPI/Ressources/gpli_setup2.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/784892a4b5bfd69c46500ffa121db3b4b8ded8a1/GLPI/Ressources/gpli_setup2.png)
+5. Base de données :    
    - Serveur : mariadb    
    - Utilisateur : glpi    
    - Mot de passe : Azerty1*    
    - Base : glpi    
-5. Terminer l'installation    
+6. Terminer l'installation    
+![GLPI/Ressources/gpli_setup3.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/784892a4b5bfd69c46500ffa121db3b4b8ded8a1/GLPI/Ressources/gpli_setup3.png)
 
 ---
 
@@ -183,6 +186,9 @@ Ajouter enregistrement A : srvlx02 → 172.16.10.3
 | post-only | postonly | Post-Only |
 
 Changer les mots de passe après installation.
+
+## linterface WEB
+![GLPI/Ressources/capture_de_surface.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/784892a4b5bfd69c46500ffa121db3b4b8ded8a1/GLPI/Ressources/capture_de_surface.png)
 
 ---
 
