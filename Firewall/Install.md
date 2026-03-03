@@ -83,6 +83,8 @@
     LAN : em1 → 10.10.5.1/29
     DMZ : OPT1 → 172.16.30.1/28
 
+![Firewall/Ressources/interface_cons.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/0232ce9132759aa0162de2df888a30d7364db9bf/Firewall/Ressources/interface_cons.png)
+
 ---
 
 ## 4. Accès Web GUI
@@ -127,7 +129,7 @@
 - Subnet : 28
 - Apply Changes
 
-
+![Firewall/Ressources/interface_web_pfsense_dash.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/0232ce9132759aa0162de2df888a30d7364db9bf/Firewall/Ressources/interface_web_pfsense_dash.png)
 
 ---
 
@@ -174,6 +176,7 @@ Firewall → Aliases → Add :
 | NET_LAN_TEST | Network | 172.16.20.0/28 |
 | NET_Internal | Network | NET_LAN_SRV, NET_LAN_TEST NET_Transit  |
 
+![Firewall/Ressources/Aliases_et_porte.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/0232ce9132759aa0162de2df888a30d7364db9bf/Firewall/Ressources/Aliases_et_porte.png)
 
 ## 7.1 Règles pare-feu
 
@@ -184,11 +187,15 @@ Firewall → Aliases → Add :
 | Pass | NET_Internal | any | any | LAN vers Internet |
 | Pass | NET_Internal | NET_DMZ | 80,443,25,587,993 | LAN vers DMZ |
 
+![Firewall/Ressources/rule_transite.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/0232ce9132759aa0162de2df888a30d7364db9bf/Firewall/Ressources/rule_transite.png)
+
 ### Interface DMZ
 
 | Action | Source | Destination | Port | Description |
 |--------|--------|-------------|------|-------------|
 | Pass | NET_DMZ | any | 80,443 | DMZ vers Internet |
+
+![Firewall/Ressources/rule_dmz.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/0232ce9132759aa0162de2df888a30d7364db9bf/Firewall/Ressources/rule_dmz.png)
 
 ---
 
