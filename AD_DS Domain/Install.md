@@ -128,6 +128,7 @@
 
     Add-DnsServerForwarder -IPAddress 8.8.8.8
     Add-DnsServerForwarder -IPAddress 8.8.4.4
+![AD_DS Domain/Ressources/DNS.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/9a2e0304b8c409b2ae38ffc58c4cb49922214db5/AD_DS%20Domain/Ressources/DNS.png)
 
 ---
 
@@ -165,6 +166,8 @@
         New-ADOrganizationalUnit -Name $dept -Path "OU=_Ekoloclast,DC=tssr,DC=lan"
     }
 
+![AD_DS Domain/Ressources/01_ad_ds_ou_group.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/9a2e0304b8c409b2ae38ffc58c4cb49922214db5/AD_DS%20Domain/Ressources/01_ad_ds_ou_group.png)
+
 ### Groupes AGDLP (exemple DSI)
 
     New-ADGroup -Name "GG_DSI" -GroupScope Global -Path "OU=DSI,OU=_Ekoloclast,DC=tssr,DC=lan"
@@ -182,6 +185,8 @@
 
     Add-ADGroupMember -Identity "GG_DSI" -Members "s.wilder"
 
+![AD_DS Domain/Ressources/02_ad_ds_users.pngh](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/9a2e0304b8c409b2ae38ffc58c4cb49922214db5/AD_DS%20Domain/Ressources/02_ad_ds_users.png)
+
 ---
 
 ## 8. GPO essentielles
@@ -193,6 +198,11 @@ tssr (local) → System → Password Settings Container
 - Complexité : activée
 - Expiration : 90 jours
 - Verrouillage : 5 tentatives / 30 minutes
+
+![AD_DS Domain/Ressources/1gpo_mod_ploicy.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/9a2e0304b8c409b2ae38ffc58c4cb49922214db5/AD_DS%20Domain/Ressources/1gpo_mod_ploicy.png)
+
+## 8.1 Les autres GPO
+![AD_DS Domain/Ressources/2all_gpo.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/9a2e0304b8c409b2ae38ffc58c4cb49922214db5/AD_DS%20Domain/Ressources/2all_gpo.png)
 
 ---
 
