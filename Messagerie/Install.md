@@ -38,8 +38,14 @@ https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.9.0-amd64-ne
 ### Installation
 
 1. Demarrer sur ISO - Selectionner Install (pas Graphical)
+   ![Msg_install_step](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/1_installation_iRedmail.png)
+
+   ![installation_iRedmail.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/2_installation_iRedmail.png)
+
+   ![installation_iRedmail.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/3_installation_iRedmail.png)
 2. Langue : Francais | Clavier : Francais
-3. Nom machine : mail | Domaine : tssr.lan
+3. Nom machine : mail | Domaine : tssr.lan 
+![installation_iRedmail.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/4_installation_iRedmail.png)
 4. Mot de passe root : Azerty1*
 5. Utilisateur : admin / Azerty1*
 6. Partitionnement : Disque entier
@@ -127,7 +133,6 @@ bash iRedMail.sh
 | Components | Roundcubemail, iRedAdmin, Fail2ban |
 
 Apres installation : reboot
-
 ---
 
 ## Configuration DNS sur SRVWIN01
@@ -136,6 +141,8 @@ Apres installation : reboot
 |------|-----|--------|
 | A | mail | 172.16.30.1 |
 | MX | @ | mail.tssr.lan (priorite 10) |
+
+![iredmail_DNS](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/5_installation_iRedmail.png)
 
 ---
 
@@ -162,6 +169,14 @@ Apres installation : reboot
 systemctl status postfix dovecot nginx mariadb
 ss -tlnp | grep -E "25|587|993|443"
 
+![posfix_vrific](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/6_installation_iRedmail.png)
+
+![posfix_docecot](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/7_installation_iRedmail.png)
+
+![posfix_nginx](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/8_installation_iRedmail.png)
+
+![posfix_Mariadb](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/9_installation_iRedmail.png)
+
 
 ---
 
@@ -172,6 +187,8 @@ ss -tlnp | grep -E "25|587|993|443"
 | Webmail | https://172.16.30.1/mail/ | utilisateur@tssr.lan |
 | iRedAdmin | https://172.16.30.1/iredadmin/ | postmaster@tssr.lan / Azerty1* |
 
+![web_ired_interface](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/11_installation_iRedmail.png)
+
 ---
 
 ## Creer utilisateur mail
@@ -181,6 +198,9 @@ ss -tlnp | grep -E "25|587|993|443"
 1. https://172.16.30.1/iredadmin/
 2. Login : postmaster@tssr.lan
 3. Add - User - Email + Password - Add
+
+![add_utilisateur](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/11_installation_iRedmail.png)
+
 
 ### Via CLI
 
@@ -197,6 +217,9 @@ bash create_mail_user_SQL.sh utilisateur@tssr.lan motdepasse
 | Port IMAP | 993 (SSL/TLS) |
 | Serveur SMTP | mail.tssr.lan |
 | Port SMTP | 587 (STARTTLS) |
+
+![thunderbird_config](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/15_installation_Thunderbird.png)
+
 
 ---
 
