@@ -23,6 +23,8 @@ su -
 | Webmail | https://172.16.30.1/mail/ | utilisateur@tssr.lan |
 | iRedAdmin | https://172.16.30.1/iredadmin/ | postmaster@tssr.lan / Azerty1* |
 
+![ired_webinterface](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/10_installation_iRedmail.png)
+
 ---
 
 ## Gestion des utilisateurs
@@ -34,6 +36,10 @@ su -
 3. Add - User
 4. Remplir : email, mot de passe, quota
 5. Add
+
+![ired_webinterface_add_utulisateur](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/11_installation_iRedmail.png)
+
+![ired_webinterface_add_utulisateur](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/13_installation_iRedmail.png)
 
 ### Creer un utilisateur (via CLI)
 
@@ -58,7 +64,11 @@ Via iRedAdmin : Users - Selectionner - Delete
 | Port SMTP | 587 (STARTTLS) |
 | Utilisateur | email complet (ex: safi@tssr.lan) |
 
+---
+
 ### Thunderbird
+Installation Thunderbired  
+![intall_Thunderbird](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/14_installation_iRedmail.png)
 
 1. Ajouter un compte
 2. Email : safi@tssr.lan
@@ -66,6 +76,18 @@ Via iRedAdmin : Users - Selectionner - Delete
 4. IMAP : mail.tssr.lan, 993, SSL/TLS
 5. SMTP : mail.tssr.lan, 587, STARTTLS
 6. Accepter le certificat auto-signe
+
+![ajoute_un_compte](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/15_installation_Thunderbird.png)
+
+Interface Thunderbird  
+![inter_face](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/16_installation_Thunderbird.png)
+
+Envoie mail  
+![envoi_mail](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/17_installation_Thunderbird.png)
+
+Reception mail  
+![recep_email](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/18_installation_Thunderbird.png)
+
 
 ---
 
