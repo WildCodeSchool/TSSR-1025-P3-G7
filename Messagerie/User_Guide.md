@@ -1,6 +1,6 @@
-# SRVLX02 - Guide d'utilisation
+# SRVLX01 - Guide d'utilisation
 
-## Serveur GLPI (Ubuntu + Docker)
+## Serveur Messagerie iRedMail (Debian 12)
 
 ---
 
@@ -9,113 +9,183 @@
 ### SSH
 
 
-ssh safi@172.16.10.3
+ssh admin@172.16.30.1
 Password : Azerty1*
+
+# Pour root
+su -
 
 
 ### Interface web
 
-URL : http://172.16.10.3
-
-
-| Utilisateur | Mot de passe | Profil |
-|-------------|--------------|--------|
-| glpi | glpi | Super-Admin |
-| tech | tech | Technicien |
+| Service | URL | Identifiants |
+|---------|-----|--------------|
+| Webmail | https://172.16.30.1/mail/ | utilisateur@tssr.lan |
+| iRedAdmin | https://172.16.30.1/iredadmin/ | postmaster@tssr.lan / Azerty1* |
 
 ---
 
-## Gestion des conteneurs Docker
+## Gestion des utilisateurs
 
-### Voir les conteneurs
+### Creer un utilisateur (via iRedAdmin)
 
-docker ps
+1. Acceder a https://172.16.30.1/iredadmin/
+2. Se connecter : postmaster@tssr.lan / Azerty1*
+3. Add - User
+4. Remplir : email, mot de passe, quota
+5. Add
 
-
-### Redémarrer GLPI
-
-cd /opt/glpi
-docker compose restart
-
-
-### Arrêter GLPI
-
-cd /opt/glpi
-docker compose down
+### Creer un utilisateur (via CLI)
 
 
-### Démarrer GLPI
-
-cd /opt/glpi
-docker compose up -d
+cd /root/iRedMail-1.7.1/tools/
+bash create_mail_user_SQL.sh utilisateur@tssr.lan motdepasse
 
 
-### Voir les logs
+### Supprimer un utilisateur
 
-docker logs glpi-app
-docker logs glpi-mariadb
+Via iRedAdmin : Users - Selectionner - Delete
+
+---
+
+## Configuration client mail
+
+| Parametre | Valeur |
+|-----------|--------|
+| Serveur IMAP | mail.tssr.lan ou 172.16.30.1 |
+| Port IMAP | 993 (SSL/TLS) |
+| Serveur SMTP | mail.tssr.lan ou 172.16.30.1 |
+| Port SMTP | 587 (STARTTLS) |
+| Utilisateur | email complet (ex: safi@tssr.lan) |
+
+### Thunderbird
+
+1. Ajouter un compte
+2. Email : safi@tssr.lan
+3. Configuration manuelle
+4. IMAP : mail.tssr.lan, 993, SSL/TLS
+5. SMTP : mail.tssr.lan, 587, STARTTLS
+6. Accepter le certificat auto-signe
+
+---
+
+## Commandes utiles
+
+### Voir les services
+
+
+systemctl status postfix
+systemctl status dovecot
+systemctl status nginx
+systemctl status mariadb
+
+
+### Redemarrer les services
+
+
+systemctl restart postfix
+systemctl restart dovecot
+systemctl restart nginx
+
+
+### Voir les logs mail
+
+
+tail -f /var/log/mail.log
+
+
+### Voir la file d'attente mail
+
+
+postqueue -p
+
+
+### Forcer l'envoi de la file
+
+
+postqueue -f
+
+
+### Supprimer tous les mails en attente
+
+
+postsuper -d ALL
 
 
 ---
 
-## Gestion des tickets
+## Test envoi mail
 
-### Créer un ticket
 
-1. Assistance → Créer un ticket
-2. Remplir : titre, description, catégorie, urgence
-3. Ajouter
+apt install mailutils -y
+echo "Test body" | mail -s "Test subject" admin@tssr.lan
 
-### Attribuer un ticket
-
-1. Ouvrir le ticket
-2. Acteurs → Attribué à → Sélectionner technicien
-3. Sauvegarder
 
 ---
 
-## Gestion du parc
+## Depannage
 
-### Ajouter un ordinateur
-
-1. Parc → Ordinateurs → Ajouter
-2. Remplir : nom, fabricant, modèle, numéro de série
-3. Ajouter
-
----
-
-## Import utilisateurs LDAP
-
-1. Configuration → Authentification → Annuaires LDAP
-2. Ajouter
-3. Paramètres :
-   - Serveur : 172.16.10.2
-   - Port : 389
-   - Base DN : dc=tssr,dc=lan
-   - Utilisateur : CN=Administrator,CN=Users,DC=tssr,DC=lan
-4. Tester → Sauvegarder
-
----
-
-## Dépannage
-
-| Problème | Solution |
+| Probleme | Solution |
 |----------|----------|
-| Page inaccessible | docker ps (vérifier conteneurs) |
-| Conteneur arrêté | docker compose up -d |
-| Erreur base | docker logs glpi-mariadb |
+| Webmail inaccessible | systemctl restart nginx |
+| Login echoue | Verifier utilisateur dans iRedAdmin |
+| Mail non envoye | Verifier postqueue -p + logs |
+| Certificat SSL | Accepter l'exception (auto-signe) |
+| Connexion refusee | Verifier regles FW01 |
+
+### Verifier les ports
+
+
+ss -tlnp | grep -E "25|587|993|443"
+
 
 ---
 
 ## Sauvegarde
 
-cd /opt/glpi
+### Sauvegarder les mails
 
-# Sauvegarder les volumes Docker
-docker run --rm -v glpi_mariadb_data:/data -v $(pwd):/backup alpine tar cvzf /backup/backup_mariadb.tar.gz /data
-docker run --rm -v glpi_glpi_data:/data -v $(pwd):/backup alpine tar cvzf /backup/backup_glpi.tar.gz /data
+
+tar -czvf /root/backup_vmail_$(date +%Y%m%d).tar.gz /var/vmail
+
+
+### Sauvegarder la config
+
+
+tar -czvf /root/backup_config_$(date +%Y%m%d).tar.gz /etc/postfix /etc/dovecot /etc/nginx
+
+
+### Sauvegarder la base
+
+
+mysqldump -u root -p --all-databases > /root/backup_db_$(date +%Y%m%d).sql
+
 
 ---
 
-Auteur : Safiullah 
-Projet : Ekoloclast
+## Fichiers de configuration
+
+| Fichier | Description |
+|---------|-------------|
+| /etc/postfix/main.cf | Configuration Postfix |
+| /etc/dovecot/dovecot.conf | Configuration Dovecot |
+| /etc/nginx/sites-enabled/ | Configuration Nginx |
+| /root/iRedMail-1.7.1/iRedMail.tips | Infos post-installation |
+| /var/vmail | Stockage des mails |
+
+---
+
+## Ports utilises
+
+| Port | Service |
+|------|---------|
+| 25 | SMTP (serveur a serveur) |
+| 587 | SMTP Submission (clients) |
+| 993 | IMAPS (SSL) |
+| 995 | POP3S (SSL) |
+| 80 | HTTP (redirection) |
+| 443 | HTTPS (webmail) |
+
+---
+
+Auteur : Safi | Projet : Ekoloclast
