@@ -1,47 +1,75 @@
-## Prjoet TSSR-1025-P3-G7 Infrastructure Réseau Ekoloclast
+# Projet TSSR-1025-P3-G7 — Infrastructure Réseau Ekoloclast
+
 ![logo](Ressources/image_logo.png)
+
 ---
-## Infrastructure Réseau Ekoloclast
-À propos
-Ce Projet réalisé dans le cadre de ma formation TSSR. 
-Projet de mise en place d'une infrastructure réseau professionnelle complète pour Ekoloclast, une start-up spécialisée dans l'écologie.  
-Ekoloclast:
-183 employés répartis dans 10 départements Start-up parisienne en pleine croissance  Fusion/acquisition prévue prochainement
 
+## Sommaire
 
-Objectif : Remplacer le réseau actuel basique (box FAI + wifi) par une infrastructure d'entreprise sécurisée et centralisée.
+1. [À propos](#à-propos)
+2. [Situation actuelle](#situation-actuelle)
+3. [Situation cible](#situation-cible)
+4. [Architecture prévue](#architecture-prévue)
+5. [Inventaire des machines](#inventaire-des-machines)
+6. [Réseaux](#réseaux)
+7. [Services et Ports](#services-et-ports)
+8. [Identifiants](#identifiants)
+9. [Accès Web](#accès-web)
+10. [Extensions VoIP](#extensions-voip)
+11. [Enregistrements DNS](#enregistrements-dns)
+12. [Configuration VirtualBox](#configuration-virtualbox)
+13. [Documentation](#documentation)
 
-Situation actuelle  
+---
 
-Réseau wifi non sécurisé  
-PC en workgroup sans authentification  
-Aucune gestion centralisée  
-Stockage local uniquement  
+## À propos
 
-Situation cible  
+Projet réalisé dans le cadre de la formation TSSR — mise en place d'une infrastructure réseau professionnelle complète pour **Ekoloclast**, une start-up parisienne spécialisée dans l'écologie.
 
-Infrastructure segmentée (WAN/LAN/DMZ)  
-Domaine Active Directory  
-Services centralisés (DNS, DHCP, messagerie, VoIP)  
-Sécurité renforcée avec pare-feu  
+- **183 employés** répartis dans 10 départements
+- Start-up en pleine croissance
+- Fusion/acquisition prévue prochainement
 
-## Architecture prévue  
+**Objectif :** Remplacer le réseau actuel basique (box FAI + wifi) par une infrastructure d'entreprise sécurisée et centralisée.
 
-Serveurs  
-FW01        : Pare-feu pfSense (WAN/LAN(Transit)/DMZ)
-FW02        : Roteur LAN
-SRVWIN01    : Windows Server 2022 (AD-DS, DNS, DHCP)  
-SRVWIN04    : Windows Server 2022 (WSUS)  
-SRVLX01     : Debian 12 Messagerie 
-SRVLX02     : Ubuntu serveur GLPI
-IPBX01      : FreePBX (VoIP)  
-CLIWIN01/02 : Clients Windows 10/11  
+---
+
+## Situation actuelle
+
+- Réseau wifi non sécurisé
+- PC en workgroup sans authentification
+- Aucune gestion centralisée
+- Stockage local uniquement
+
+---
+
+## Situation cible
+
+- Infrastructure segmentée (WAN/LAN/DMZ)
+- Domaine Active Directory
+- Services centralisés (DNS, DHCP, messagerie, VoIP)
+- Sécurité renforcée avec pare-feu
+
+---
+
+## Architecture prévue
+
+| Nom | Rôle |
+|-----|------|
+| FW01 | Pare-feu pfSense (WAN / Transit / DMZ) |
+| FW02 | Routeur LAN (Debian 12) |
+| SRVWIN01 | Windows Server 2022 (AD-DS, DNS, DHCP) |
+| SRVWIN04 | Windows Server 2022 Core (WSUS) |
+| SRVLX01 | Debian 12 — Messagerie iRedMail |
+| SRVLX02 | Ubuntu Server 22.04 — GLPI (Docker) |
+| IPBX01 | FreePBX (VoIP) |
+| CLIWIN01/02 | Clients Windows 10/11 |
+
+---
 
 ## Inventaire des machines
 
----
-
-## Pare-feu et Routeurs
+### Pare-feu et Routeurs
 
 | Nom | OS | Rôle | Interface | IP | Masque |
 |-----|-----|------|-----------|-----|--------|
@@ -52,9 +80,7 @@ CLIWIN01/02 : Clients Windows 10/11
 | | | | LAN_SRV | 172.16.10.1 | /28 |
 | | | | LAN_TEST | 172.16.20.1 | /28 |
 
----
-
-## Serveurs
+### Serveurs
 
 | Nom | OS | Rôle | IP | Passerelle | DNS | Zone |
 |-----|-----|------|-----|------------|-----|------|
@@ -64,9 +90,7 @@ CLIWIN01/02 : Clients Windows 10/11
 | IPBX01 | FreePBX 16 (CentOS) | VoIP / Téléphonie | 172.16.10.5/28 | 172.16.10.1 | 172.16.10.2 | LAN_SRV |
 | SRVLX01 | Debian 12 | Messagerie iRedMail | 172.16.30.2/28 | 172.16.30.1 | 172.16.10.2 | DMZ |
 
----
-
-## Clients
+### Clients
 
 | Nom | OS | Rôle | IP | Passerelle | DNS | Zone |
 |-----|-----|------|-----|------------|-----|------|
@@ -79,7 +103,7 @@ CLIWIN01/02 : Clients Windows 10/11
 
 | Nom | Plage | Masque | Passerelle | Description |
 |-----|-------|--------|------------|-------------|
-| Transit | 10.10.5.0/29 | 255.255.255.248 | 10.10.5.1 | Liaison FW01 - FW02 |
+| Transit | 10.10.5.0/29 | 255.255.255.248 | 10.10.5.1 | Liaison FW01 ↔ FW02 |
 | LAN_SRV | 172.16.10.0/28 | 255.255.255.240 | 172.16.10.1 | Serveurs internes |
 | LAN_TEST | 172.16.20.0/28 | 255.255.255.240 | 172.16.20.1 | Postes clients |
 | DMZ | 172.16.30.0/28 | 255.255.255.240 | 172.16.30.1 | Zone démilitarisée |
@@ -172,14 +196,14 @@ CLIWIN01/02 : Clients Windows 10/11
 
 | Machine | Installation | Guide utilisateur |
 |---------|--------------|-------------------|
-| FW01 | FW01_INSTALL.md | FW01_USERGUIDE.md |
-| FW02 | FW02_INSTALL.md | FW02_USERGUIDE.md |
-| SRVWIN01 | SRVWIN01_INSTALL.md | SRVWIN01_USERGUIDE.md |
-| SRVLX02 | SRVLX02_INSTALL.md | SRVLX02_USERGUIDE.md |
-| SRVWIN04 | SRVWIN04_INSTALL.md | SRVWIN04_USERGUIDE.md |
-| IPBX01 | IPBX01_INSTALL.md | IPBX01_USERGUIDE.md |
-| SRVLX01 | SRVLX01_INSTALL.md | SRVLX01_USERGUIDE.md |
+| FW01 | [FW01_INSTALL.md](FW01_INSTALL.md) | [FW01_USERGUIDE.md](FW01_USERGUIDE.md) |
+| FW02 | [FW02_INSTALL.md](FW02_INSTALL.md) | [FW02_USERGUIDE.md](FW02_USERGUIDE.md) |
+| SRVWIN01 | [SRVWIN01_INSTALL.md](SRVWIN01_INSTALL.md) | [SRVWIN01_USERGUIDE.md](SRVWIN01_USERGUIDE.md) |
+| SRVLX02 | [SRVLX02_INSTALL.md](SRVLX02_INSTALL.md) | [SRVLX02_USERGUIDE.md](SRVLX02_USERGUIDE.md) |
+| SRVWIN04 | [SRVWIN04_INSTALL.md](SRVWIN04_INSTALL.md) | [SRVWIN04_USERGUIDE.md](SRVWIN04_USERGUIDE.md) |
+| IPBX01 | [IPBX01_INSTALL.md](IPBX01_INSTALL.md) | [IPBX01_USERGUIDE.md](IPBX01_USERGUIDE.md) |
+| SRVLX01 | [SRVLX01_INSTALL.md](SRVLX01_INSTALL.md) | [SRVLX01_USERGUIDE.md](SRVLX01_USERGUIDE.md) |
 
 ---
 
-Auteur : Safiullah | Projet : Ekoloclast | Formation : TSSR - Wild Code School
+**Auteur :** Safiullah | **Projet :** Ekoloclast | **Formation :** TSSR — Wild Code School
