@@ -73,7 +73,7 @@ Mot de passe : Azerty1*
 
 ## Commandes utiles
 
-```powershell
+
 # Utilisateurs AD
 Get-ADUser -Filter *
 
