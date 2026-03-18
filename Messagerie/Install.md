@@ -11,7 +11,7 @@
 | Nom | SRVLX01 |
 | Hostname FQDN | mail.tssr.lan |
 | OS | Debian 12 (Bookworm) - Sans GUI |
-| IP | 172.16.30.1/28 |
+| IP | 172.16.30.2/28 |
 | Passerelle | 172.16.30.14 (FW01 DMZ) |
 | DNS | 172.16.10.2 |
 | Zone | DMZ |
@@ -69,9 +69,9 @@ iface lo inet loopback
 
 auto enp0s3
 iface enp0s3 inet static
-    address 172.16.30.1
+    address 172.16.30.2
     netmask 255.255.255.240
-    gateway 172.16.30.14
+    gateway 172.16.30.1
     dns-nameservers 172.16.10.2
     dns-search tssr.lan
 
@@ -139,10 +139,10 @@ Apres installation : reboot
 
 | Type | Nom | Valeur |
 |------|-----|--------|
-| A | mail | 172.16.30.1 |
+| A | mail | 172.16.30.2 |
 | MX | @ | mail.tssr.lan (priorite 10) |
 
-![iredmail_DNS](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/004b8d769c53ac03bce6f371349b4b0a65cdfd9a/Messagerie/Ressources/5_installation_iRedmail.png)
+![photo_zonforward_DNS]()
 
 ---
 
@@ -159,8 +159,8 @@ Apres installation : reboot
 
 | Source | Destination | Port | Description |
 |--------|-------------|------|-------------|
-| NET_Internal | 172.16.30.1 | 80, 443 | Webmail |
-| NET_Internal | 172.16.30.1 | 587, 993 | SMTP/IMAP |
+| NET_Internal | 172.16.30.2 | 80, 443 | Webmail |
+| NET_Internal | 172.16.30.2 | 587, 993 | SMTP/IMAP |
 
 ---
 
