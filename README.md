@@ -49,7 +49,8 @@ Projet réalisé dans le cadre de la formation TSSR — mise en place d'une infr
 - Domaine Active Directory
 - Services centralisés (DNS, DHCP, messagerie, VoIP)
 - Sécurité renforcée avec pare-feu
-
+### Schéma réseau Ekoloclast
+![shema](Ressources/nouveu_schema.png)
 ---
 
 ## Architecture prévue
