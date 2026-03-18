@@ -33,11 +33,21 @@
 
 1. Télécharger ISO : https://www.freepbx.org/downloads/
 2. Démarrer sur l'ISO
-3. Choisir version recommandée
-4. Graphical Installation - Output to VGA
-5. FreePBX Standard
+3. Choisir version recommandée  
+![image_of_options](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/instal_freePBX.png)
+
+4. Graphical Installation - Output to VGA  
+![image_of_options](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/2_instal_freePBX_.png)
+
+5. FreePBX Standard et choit de langue  
+![image_of_options](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/3instal_freePBX.png)
+
 6. Mot de passe root : Azerty1* (attention clavier QWERTY)
-7. Attendre fin installation
+![image_of_options](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/4_instal_freePBX.png)
+
+7. Attendre fin installation  
+![image_of_options](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/5_instal_freePBX.png)
+
 8. Retirer ISO → Redémarrer
 
 ---
@@ -46,16 +56,16 @@
 
 Se connecter en root.
 
-vi /etc/sysconfig/network-scripts/ifcfg-eth0
+nano /etc/sysconfig/network-scripts/ifcfg-eth0  
 
 
-DEVICE=eth0
-BOOTPROTO=static
-ONBOOT=yes
-IPADDR=172.16.10.5
-NETMASK=255.255.255.240
-GATEWAY=172.16.10.14
-DNS1=172.16.10.2
+DEVICE=eth0  
+BOOTPROTO=static  
+ONBOOT=yes  
+IPADDR=172.16.10.5  
+NETMASK=255.255.255.240  
+GATEWAY=172.16.10.14  
+DNS1=172.16.10.2  
 
 
 systemctl restart network
@@ -65,26 +75,26 @@ systemctl restart network
 ## Configuration clavier français
 
 
-localectl set-locale LANG=fr_FR.utf8
-localectl set-keymap fr
-localectl set-x11-keymap fr
+localectl set-locale LANG=fr_FR.utf8  
+localectl set-keymap fr  
+localectl set-x11-keymap fr  
 
+![lang_et_keyboard_conf](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/6_freePBX_chng_lan.png)
 
 ---
 
-## Création utilisateur SSH
+## Création utilisateur SSH  
 
-adduser safi
-passwd ************
-# Mot de passe : Azerty1*
+adduser safi    
+passwd *************Mot de passe : Azerty1*
 
 vi /etc/ssh/sshd_config
 
 Modifier :
 
-PermitRootLogin no
-AllowUsers safi
-PasswordAuthentication yes
+PermitRootLogin no  
+AllowUsers safi  
+PasswordAuthentication yes  
 
 
 systemctl restart sshd
@@ -93,19 +103,22 @@ systemctl restart sshd
 
 ## Configuration web
 
-1. Accéder à http://172.16.10.5
-2. Créer compte admin :
-   - Username : admin
-   - Password : Azerty1*
-   - Email : admin@tssr.lan
+1. Accéder à http://172.16.10.5  
+2. Créer compte admin :  
+   - Username : admin  
+   - Password : Azerty1*  
+   - Email : admin@tssr.lan  
 
+![ipbx_web_conf](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/7_conf_initiale.png)
+
+![ipbx_web_conf](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/8_conf_initiale.png)
 ---
 
 ## Création des extensions
 
-1. Applications → Extensions
-2. SIP [chan_pjsip] Extensions
-3. + Add New SIP [chan_pjsip] Extension
+1. Applications → Extensions  
+2. SIP [chan_pjsip] Extensions  
+3. + Add New SIP [chan_pjsip] Extension  
 
 | Extension | Nom | Secret |
 |-----------|-----|--------|
@@ -114,7 +127,8 @@ systemctl restart sshd
 | 20003 | Support | 1234 |
 | 20004 | Direction | 1234 |
 
-4. Submit → Apply Config
+4. Submit → Apply Config  
+![Extension_add](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/11_cree_extension.png)
 
 ---
 
@@ -139,7 +153,9 @@ Configuration :
 | Password | 1234 |
 | Transport | UDP |
 
+![conf_micro_SIP](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/12.1_installation_MicroSIP.png)
+
 ---
 
-Auteur : Safiullah
+Auteur : Safiullah  
 Projet : Ekoloclast
