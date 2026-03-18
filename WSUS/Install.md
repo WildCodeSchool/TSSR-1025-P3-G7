@@ -138,7 +138,7 @@ Features -> Remote Server Administration tools
 Administration tools -> Windows Server Update Services Tools.  
 ![add_role](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/79cc632ab50bfc0b43551989d8920d2cb06a63f9/WSUS/Resources/add_features_win01_WSUS.png)
 
-### Connection avec Serveur SRVWIN02 WSUS depuis update service de SRVWIN01 AD-DS  
+### Connection avec Serveur SRVWIN04 WSUS depuis update service de SRVWIN01 AD-DS  
 ![update_service_conec](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/79cc632ab50bfc0b43551989d8920d2cb06a63f9/WSUS/Resources/CoreWsus_AD_connectionn.png)
 
 ### Creation Groupe  
