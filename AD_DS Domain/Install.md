@@ -216,5 +216,4 @@ tssr (local) → System → Password Settings Container
 ---
 
 Auteur : Safiullah  
-Projet : Ekoloclast - Infrastructure tssr.lan
-Date : 02/2026
+Projet : Ekoloclast 
