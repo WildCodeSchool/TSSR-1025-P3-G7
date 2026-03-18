@@ -41,7 +41,7 @@ CLIWIN01/02 : Clients Windows 10/11
 
 ---
 
-## Pare-feu / Routeurs
+## Pare-feu et Routeurs
 
 | Nom | OS | Rôle | Interface | IP | Masque |
 |-----|-----|------|-----------|-----|--------|
