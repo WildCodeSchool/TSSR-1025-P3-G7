@@ -6,22 +6,22 @@
 
 ## Connexion
 
-### SSH
+### SSH  
 
 
-ssh safi@172.16.10.5
-Password : *********
+ssh safi@172.16.10.5  
+Password : *********  
 
-# Pour root
-su -
+# Pour root  
+su -  
 
 
 ### Interface web
 
-URL : http://172.16.10.5
-User : admin
-Password : Azerty1*
-
+URL : http://172.16.10.5   
+User : admin  
+Password : Azerty1*   
+![ipbx_web](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/6d9dc4f1cf7210423ef829a5d57827ab3f0f3075/Voip/Ressources/4_instal_freePBX.png)
 
 ---
 
@@ -34,15 +34,22 @@ Password : Azerty1*
 | 20003 | Support | 1234 |
 | 20004 | Direction | 1234 |
 
+![Extension_add](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/11_cree_extension.png)
+
 ---
 
 ## Créer une extension
 
-1. Applications → Extensions
-2. SIP [chan_pjsip] Extensions
-3. + Add New SIP [chan_pjsip] Extension
+1. Applications → Extensions  
+![Extension_add](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/8_conf_initiale.png)
+
+2. SIP [chan_pjsip] Extensions  
+3. + Add New SIP [chan_pjsip] Extension  
+![Extension_add](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/25ffb521f1e4a80030c66a02c222cf07955ebfd8/Voip/Ressources/10_cree_extension.png)
+
 4. Remplir : User Extension, Display Name, Secret
 5. Submit → Apply Config
+
 
 ---
 
@@ -62,8 +69,9 @@ Password : Azerty1*
 | Password | 1234 |
 | Transport | UDP |
 
-4. Save
+4. Sauvegarder
 
+![conf_micro_SIP](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/61c62098a40514be5a1697d6aa273e27a8418a1c/Voip/Ressources/12.1_installation_MicroSIP.png)
 ---
 
 ## Passer un appel
@@ -71,8 +79,8 @@ Password : Azerty1*
 1. Ouvrir MicroSIP
 2. Vérifier statut "Online"
 3. Taper le numéro (ex: 20003)
-4. Appuyer Entrée
-
+4. Appuyer Entrée  
+![conf_micro_SIP](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/25ffb521f1e4a80030c66a02c222cf07955ebfd8/Voip/Ressources/14_installation_MicroSIP.png)
 ---
 
 ## Vérifier les extensions enregistrées
