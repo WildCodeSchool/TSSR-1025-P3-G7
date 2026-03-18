@@ -196,14 +196,17 @@ Projet réalisé dans le cadre de la formation TSSR — mise en place d'une infr
 
 | Machine | Installation | Guide utilisateur |
 |---------|--------------|-------------------|
-| FW01 | [FW01_INSTALL.md](FW01_INSTALL.md) | [FW01_USERGUIDE.md](FW01_USERGUIDE.md) |
-| FW02 | [FW02_INSTALL.md](FW02_INSTALL.md) | [FW02_USERGUIDE.md](FW02_USERGUIDE.md) |
-| SRVWIN01 | [SRVWIN01_INSTALL.md](SRVWIN01_INSTALL.md) | [SRVWIN01_USERGUIDE.md](SRVWIN01_USERGUIDE.md) |
-| SRVLX02 | [SRVLX02_INSTALL.md](SRVLX02_INSTALL.md) | [SRVLX02_USERGUIDE.md](SRVLX02_USERGUIDE.md) |
-| SRVWIN04 | [SRVWIN04_INSTALL.md](SRVWIN04_INSTALL.md) | [SRVWIN04_USERGUIDE.md](SRVWIN04_USERGUIDE.md) |
-| IPBX01 | [IPBX01_INSTALL.md](IPBX01_INSTALL.md) | [IPBX01_USERGUIDE.md](IPBX01_USERGUIDE.md) |
-| SRVLX01 | [SRVLX01_INSTALL.md](SRVLX01_INSTALL.md) | [SRVLX01_USERGUIDE.md](SRVLX01_USERGUIDE.md) |
+| FW01 / FW02 | [Install.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Firewall/Install.md) | [User_Guide.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Firewall/User_Guide.md) |
+| SRVWIN01 | [Install.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/AD_DS%20Domain/Install.md) | [User_Guide.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/AD_DS%20Domain/User_Guide.md) |
+| SRVLX02 | [Install.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/GLPI/Install.md) | [User_Guide.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/GLPI/User_Guide.md) |
+| SRVWIN04 | [Install.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/WSUS/Install.md) | [User_Guide.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/WSUS/User_Guide.md) |
+| IPBX01 | [Install.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Voip/Install.md) | [User_Guide.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Voip/User_Guide.md) |
+| SRVLX01 | [Install.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Messagerie/Install.md) | [User_Guide.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Messagerie/User_Guide.md) |
+| CLIWIN01 / CLIWIN02 | [Install.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Clients/Install.md) | [User_Guide.md](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/main/Clients/User_Guide.md) |
+
 
 ---
 
-**Auteur :** Safiullah | **Projet :** Ekoloclast | **Formation :** TSSR — Wild Code School
+**Auteur :** Safiullah   
+**Projet :** Ekoloclast   
+**Formation :** TSSR Simplon by Wild Code School  
