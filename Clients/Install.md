@@ -1,6 +1,6 @@
 # CLIWIN01 / CLIWIN02 - Installation et Utilisation
 
-## Postes Clients Windows 10/11
+## Postes Clients Windows 10
 
 ---
 
@@ -8,7 +8,7 @@
 
 | Parametre | CLIWIN01 | CLIWIN02 |
 |-----------|----------|----------|
-| OS | Windows 10/11 Pro | Windows 10/11 Pro |
+| OS | Windows 10 Pro | Windows 10 Pro |
 | IP | DHCP ou statique | DHCP ou statique |
 | Passerelle | 172.16.20.1 | 172.16.20.1 |
 | DNS | 172.16.10.2 | 172.16.10.2 |
@@ -22,7 +22,7 @@
 | Parametre | Valeur |
 |-----------|--------|
 | Type | Microsoft Windows |
-| Version | Windows 10/11 (64-bit) |
+| Version | Windows 10 (64-bit) |
 | RAM | 2048 MB |
 | Disque | 50 GB |
 | Reseau | Internal Network - LAN_TEST |
@@ -31,13 +31,13 @@
 
 # PARTIE 1 : INSTALLATION
 
-## Installation Windows 10/11
+## Installation Windows 10
 
-1. Demarrer sur l'ISO Windows 10/11
+1. Demarrer sur l'ISO Windows 10
 2. Langue : Francais
 3. Installer maintenant
 4. Je n'ai pas de cle de produit (ou entrer une cle)
-5. Choisir : Windows 10/11 Pro
+5. Choisir : Windows 10 Pro
 6. Accepter licence
 7. Installation personnalisee
 8. Selectionner le disque - Suivant
@@ -77,7 +77,7 @@ Le serveur DHCP sur SRVWIN01 attribue automatiquement :
 
 | Parametre | CLIWIN01 | CLIWIN02 |
 |-----------|----------|----------|
-| IP | 172.16.20.2 | 172.16.20.3 |
+| IP | 172.16.20.2/DHCP | 172.16.20.3/DHCP |
 | Masque | 255.255.255.240 | 255.255.255.240 |
 | Passerelle | 172.16.20.1 | 172.16.20.1 |
 | DNS | 172.16.10.2 | 172.16.10.2 |
@@ -123,5 +123,5 @@ Doit afficher : Domain: tssr.lan
 
 ---
 
-Auteur : Safi  
+Auteur : Safiullah  
 Projet : Ekoloclast
