@@ -20,8 +20,8 @@ su -
 
 | Service | URL | Identifiants |
 |---------|-----|--------------|
-| Webmail | https://172.16.30.1/mail/ | utilisateur@tssr.lan |
-| iRedAdmin | https://172.16.30.1/iredadmin/ | postmaster@tssr.lan / Azerty1* |
+| Webmail | https://172.16.30.2/mail/ | utilisateur@tssr.lan |
+| iRedAdmin | https://172.16.30.2/iredadmin/ | postmaster@tssr.lan / Azerty1* |
 
 ![ired_webinterface](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/eaa94b6b3c43a3042dcca636e40dab60f302e29d/Messagerie/Ressources/10_installation_iRedmail.png)
 
@@ -31,7 +31,7 @@ su -
 
 ### Creer un utilisateur (via iRedAdmin)
 
-1. Acceder a https://172.16.30.1/iredadmin/
+1. Acceder a https://172.16.30.2/iredadmin/
 2. Se connecter : postmaster@tssr.lan / Azerty1*
 3. Add - User
 4. Remplir : email, mot de passe, quota
@@ -58,9 +58,9 @@ Via iRedAdmin : Users - Selectionner - Delete
 
 | Parametre | Valeur |
 |-----------|--------|
-| Serveur IMAP | mail.tssr.lan ou 172.16.30.1 |
+| Serveur IMAP | mail.tssr.lan ou 172.16.30.2 |
 | Port IMAP | 993 (SSL/TLS) |
-| Serveur SMTP | mail.tssr.lan ou 172.16.30.1 |
+| Serveur SMTP | mail.tssr.lan ou 172.16.30.2 |
 | Port SMTP | 587 (STARTTLS) |
 | Utilisateur | email complet (ex: safi@tssr.lan) |
 
@@ -210,4 +210,5 @@ mysqldump -u root -p --all-databases > /root/backup_db_$(date +%Y%m%d).sql
 
 ---
 
-Auteur : Safi | Projet : Ekoloclast
+Auteur : Safi  
+Projet : Ekoloclast
