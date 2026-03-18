@@ -141,6 +141,8 @@ Administration tools -> Windows Server Update Services Tools.
 ### Connection avec Serveur SRVWIN02 WSUS depuis update service de SRVWIN01 AD-DS  
 ![update_service_conec](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/79cc632ab50bfc0b43551989d8920d2cb06a63f9/WSUS/Resources/CoreWsus_AD_connectionn.png)
 
+### Creation Groupe  
+![grp_creation](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/1274c72a0054325108705c085a0cb9b5c85ed859/WSUS/Resources/8creation_group_et_config_ciblage.png)
 
 ### GPO sur SRVWIN01
 
@@ -148,6 +150,8 @@ Administration tools -> Windows Server Update Services Tools.
 2. Computer Configuration → Administrative Templates → Windows Update
 3. Configure Automatic Updates : Enabled
 4. Specify intranet update service : http://srvwin04.tssr.lan:8530
+
+
 
 ---
 
