@@ -25,8 +25,8 @@ Enter-PSSession -ComputerName SRVWIN04.tssr.lan
 
 1. Tools → Windows Server Update Services
 2. Action → Connect to Server
-3. Server : SRVWIN04.tssr.lan | Port : 8530
-
+3. Server : SRVWIN04.tssr.lan | Port : 8530  
+![update_service_conec](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/79cc632ab50bfc0b43551989d8920d2cb06a63f9/WSUS/Resources/CoreWsus_AD_connectionn.png)
 ---
 
 ## Interface SConfig
