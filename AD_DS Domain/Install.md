@@ -128,7 +128,7 @@
 
     Add-DnsServerForwarder -IPAddress 8.8.8.8
     Add-DnsServerForwarder -IPAddress 8.8.4.4
-![AD_DS Domain/Ressources/DNS.png](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/9a2e0304b8c409b2ae38ffc58c4cb49922214db5/AD_DS%20Domain/Ressources/DNS.png)
+![AD_DS Domain/Ressources/DNS.png]()
 
 ---
 
