@@ -1,5 +1,5 @@
 ## Prjoet TSSR-1025-P3-G7 Infrastructure Réseau Ekoloclast
-![logo](Ressources/logo_Ekolocast.png)
+![logo](Ressources/image_logo.png)
 ---
 ## Infrastructure Réseau Ekoloclast
 À propos
@@ -70,8 +70,8 @@ CLIWIN01/02 : Clients Windows 10/11
 
 | Nom | OS | Rôle | IP | Passerelle | DNS | Zone |
 |-----|-----|------|-----|------------|-----|------|
-| CLIWIN01 | Windows 10/11 | Poste client | DHCP | 172.16.20.1 | 172.16.10.2 | LAN_TEST |
-| CLIWIN02 | Windows 10/11 | Poste client | DHCP | 172.16.20.1 | 172.16.10.2 | LAN_TEST |
+| CLIWIN01 | Windows 10 | Poste client | DHCP | 172.16.20.1 | 172.16.10.2 | LAN_TEST |
+| CLIWIN02 | Windows 10 | Poste client | DHCP | 172.16.20.1 | 172.16.10.2 | LAN_TEST |
 
 ---
 
