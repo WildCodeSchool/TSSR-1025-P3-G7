@@ -1,4 +1,4 @@
-# Projet TSSR-1025-P3-G7 — Infrastructure Réseau Ekoloclast
+# Projet TSSR-1025-P3-G7 Infrastructure Réseau Ekoloclast
 
 ![logo](Ressources/image_logo.png)
 
