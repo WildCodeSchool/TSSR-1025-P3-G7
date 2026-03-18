@@ -104,6 +104,8 @@ systemctl restart sshd
 ## Configuration web
 
 1. Accéder à http://172.16.10.5  
+![ipbx_web](https://github.com/WildCodeSchool/TSSR-1025-P3-G7/blob/6d9dc4f1cf7210423ef829a5d57827ab3f0f3075/Voip/Ressources/4_instal_freePBX.png)
+
 2. Créer compte admin :  
    - Username : admin  
    - Password : Azerty1*  
