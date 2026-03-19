@@ -36,14 +36,13 @@
 
 ### Via PowerShell
 
-    New-NetIPAddress -InterfaceAlias "Ethernet" `
-     -IPAddress 172.16.10.2 `
-     -PrefixLength 28 `
+    New-NetIPAddress -InterfaceAlias "Ethernet" 
+     -IPAddress 172.16.10.2 
+     -PrefixLength 28 
      -DefaultGateway 172.16.10.1
 
-    Set-DnsClientServerAddress -InterfaceAlias "Ethernet" `
+    Set-DnsClientServerAddress -InterfaceAlias "Ethernet" 
      -ServerAddresses 127.0.0.1
-
 ---
 
 ## 2. Renommer le serveur
@@ -77,7 +76,7 @@
 
 ### Via PowerShell
 
-    Install-WindowsFeature AD-Domain-Services, DNS, DHCP `
+    Install-WindowsFeature AD-Domain-Services, DNS, DHCP 
      -IncludeManagementTools
 
 ---
@@ -97,13 +96,13 @@
 
 ### Via PowerShell
 
-    Install-ADDSForest `
-     -DomainName "tssr.lan" `
-     -DomainNetbiosName "TSSR" `
-     -ForestMode "WinThreshold" `
-     -DomainMode "WinThreshold" `
-     -InstallDns:$true `
-     -SafeModeAdministratorPassword (ConvertTo-SecureString "P@ssw0rd123!" -AsPlainText -Force) `
+    Install-ADDSForest 
+     -DomainName "tssr.lan" 
+     -DomainNetbiosName "TSSR" 
+     -ForestMode "WinThreshold" 
+     -DomainMode "WinThreshold" 
+     -InstallDns:$true 
+     -SafeModeAdministratorPassword (ConvertTo-SecureString "P@ssw0rd123!" -AsPlainText -Force) 
      -Force:$true
 
 ---
@@ -140,14 +139,14 @@
 
 ### Créer l’étendue VLAN 20
 
-    Add-DhcpServerv4Scope -Name "VLAN20_Clients" `
-     -StartRange 172.16.20.1 `
-     -EndRange 172.16.20.10 `
-     -SubnetMask 255.255.255.240 `
+    Add-DhcpServerv4Scope -Name "VLAN20_Clients" 
+     -StartRange 172.16.20.1 
+     -EndRange 172.16.20.10 
+     -SubnetMask 255.255.255.240 
      -State Active
 
-    Set-DhcpServerv4OptionValue -ScopeId 172.16.20.0 `
-     -DnsServer 172.16.10.2 `
+    Set-DhcpServerv4OptionValue -ScopeId 172.16.20.0 
+     -DnsServer 172.16.10.2 
      -Router 172.16.20.1
 
 ---
@@ -176,11 +175,11 @@
 
 ### Création utilisateur
 
-    New-ADUser -Name "Safi Wilder" `
-     -SamAccountName "s.wilder" `
-     -UserPrincipalName "s.wilder@tssr.lan" `
-     -Path "OU=DSI,OU=_Ekoloclast,DC=tssr,DC=lan" `
-     -AccountPassword (ConvertTo-SecureString "Azerty1*" -AsPlainText -Force) `
+    New-ADUser -Name "Safi Wilder" 
+     -SamAccountName "s.wilder" 
+     -UserPrincipalName "s.wilder@tssr.lan" 
+     -Path "OU=DSI,OU=_Ekoloclast,DC=tssr,DC=lan" 
+     -AccountPassword (ConvertTo-SecureString "Azerty1*" -AsPlainText -Force) 
      -Enabled $true
 
     Add-ADGroupMember -Identity "GG_DSI" -Members "s.wilder"
