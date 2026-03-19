@@ -84,11 +84,11 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt update
+sudo apt update  
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo systemctl enable docker
-sudo usermod -aG docker $USER
+sudo systemctl enable docker  
+sudo usermod -aG docker $USER  
 
 
 Se déconnecter/reconnecter pour appliquer le groupe docker.
@@ -98,57 +98,57 @@ Se déconnecter/reconnecter pour appliquer le groupe docker.
 ## Installation GLPI avec Docker
 
 
-sudo mkdir -p /opt/glpi
-sudo chown -R $USER:$USER /opt/glpi
-cd /opt/glpi
-nano docker-compose.yml
+sudo mkdir -p /opt/glpi  
+sudo chown -R $USER:$USER /opt/glpi  
+cd /opt/glpi  
+nano docker-compose.yml  
 
 
 Contenu :  
 
-version: '3.8'
+version: '3.8'  
 
-services:  
-  mariadb:  
-    image: mariadb:10.11
-    container_name: glpi-mariadb
-    restart: always
-    environment:  
-      MARIADB_ROOT_PASSWORD: Azerty1*
-      MARIADB_DATABASE: glpi
-      MARIADB_USER: glpi
-      MARIADB_PASSWORD: Azerty1*
-    volumes:  
-      - mariadb_data:/var/lib/mysql
-    networks:  
-      - glpi-network
+services:    
+  mariadb:    
+    image: mariadb:10.11  
+    container_name: glpi-mariadb  
+    restart: always  
+    environment:    
+      MARIADB_ROOT_PASSWORD: Azerty1*  
+      MARIADB_DATABASE: glpi  
+      MARIADB_USER: glpi  
+      MARIADB_PASSWORD: Azerty1*  
+    volumes:    
+      - mariadb_data:/var/lib/mysql  
+    networks:    
+      - glpi-network  
 
-  glpi:  
-    image: diouxx/glpi:latest
-    container_name: glpi-app
-    restart: always
-    ports:  
-      - "80:80"
-    environment:  
-      TIMEZONE: Europe/Paris
-    volumes:  
-      - glpi_data:/var/www/html/glpi
-    depends_on:  
-      - mariadb
-    networks:  
-      - glpi-network
+  glpi:    
+    image: diouxx/glpi:latest  
+    container_name: glpi-app  
+    restart: always  
+    ports:    
+      - "80:80"  
+    environment:    
+      TIMEZONE: Europe/Paris  
+    volumes:    
+      - glpi_data:/var/www/html/glpi  
+    depends_on:    
+      - mariadb  
+    networks:   
+      - glpi-network  
 
-volumes:  
-  mariadb_data:  
-  glpi_data:  
+volumes:    
+  mariadb_data:    
+  glpi_data:    
 
-networks:    
-  glpi-network:  
-    driver: bridge
+networks:      
+  glpi-network:    
+    driver: bridge  
 
 
-Lancer :    
-docker compose up -d
+Lancer :      
+docker compose up -d  
 
 
 ---
@@ -198,8 +198,78 @@ Changer les mots de passe après installation.
 docker ps
 docker logs glpi-app
 
+---
+
+## Synchronisation avec Active Directory
+
+### Configuration annuaire LDAP
+
+1. Acceder a http://172.16.10.3
+2. Se connecter : glpi / glpi
+3. Menu : **Configuration** → **Authentification** → **Annuaires LDAP**
+4. Cliquer **+ Ajouter**
+
+### Parametres de connexion
+
+| Champ | Valeur |
+|-------|--------|
+| Nom | Active Directory TSSR |
+| Serveur | 172.16.10.2 |
+| Port | 389 |
+| BaseDN | DC=tssr,DC=lan |
+| DN du compte | CN=Administrator,CN=Users,DC=tssr,DC=lan |
+| Mot de passe | Azerty1* |
+| Filtre de connexion | (&(objectClass=user)(objectCategory=person)) |
+
+### Informations avancees
+
+| Champ | Valeur |
+|-------|--------|
+| Champ de l'identifiant | sAMAccountName |
+| Champ de synchronisation | objectGUID |
+
+### Correspondance des champs
+
+Aller dans l'onglet **Correspondance des champs** et ajouter :
+
+| Champ GLPI | Attribut LDAP |
+|------------|---------------|
+| Nom | sn |
+| Prenom | givenName |
+| Email | mail |
+| Identifiant | sAMAccountName |
+
+### Tester la connexion
+
+Cliquer sur **Tester** - doit afficher "Test de connexion reussi"
 
 ---
 
-Auteur : Safiullah
+## Importer les utilisateurs AD
+
+1. Menu : **Administration** → **Utilisateurs**
+2. Cliquer sur **Liaison annuaire LDAP**
+3. Selectionner **Importer de nouveaux utilisateurs**
+4. Annuaire : Active Directory TSSR
+5. Cliquer **Rechercher**
+6. Cocher les utilisateurs a importer
+7. **Actions** → **Importer**
+
+### Connexion utilisateurs AD
+
+Apres import, les utilisateurs se connectent avec :
+
+| Identifiant | Mot de passe |
+|-------------|--------------|
+| Login AD (ex: safi) | Mot de passe AD |
+
+---
+
+## Test connexion LDAP (depuis SRVLX02)
+
+sudo apt install ldap-utils -y  
+ldapsearch -x -H ldap://172.16.10.2 -D "CN=Administrator,CN=Users,DC=tssr,DC=lan" -w "Azerty1*" -b "DC=tssr,DC=lan" "(objectClass=user)" sAMAccountName
+
+---
+Auteur : Safiullah  
 Projet : Ekoloclast
